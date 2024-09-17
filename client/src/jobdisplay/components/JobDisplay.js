@@ -1,20 +1,9 @@
-import { useState } from 'react'
-import JobAccordion from '../components/JobAccordion'
-
-interface data {
-    id: number,
-    company: string,
-    jobTitle: string,
-    description: string,
-    salary: number,
-    status: string,
-    date: string,
-    industry: string,
-    subIndustry: string,
-}
-
-export default function JobDisplay(): JSX.Element {
-    const fakeData: data[] = [{
+import { jsx as _jsx } from "react/jsx-runtime";
+import { useState, useEffect } from 'react';
+import JobAccordion from './JobAccordion';
+export default function JobDisplay() {
+    const [jobList, setjobList] = useState([]); //stores job list in state
+    const fakeData = [{
             id: 1,
             company: "companyA",
             jobTitle: "titleA",
@@ -47,9 +36,12 @@ export default function JobDisplay(): JSX.Element {
             industry: "manufacturing",
             subIndustry: "foreman"
         },
-    ]
-    
-    return(
-        
-    )
+    ];
+    useEffect(() => {
+        const accordionHolder = fakeData.map((element) => {
+            return _jsx(JobAccordion, { data: element });
+        });
+        setjobList(accordionHolder);
+    }, []); //<- dependcy for when data changes
+    return (_jsx("div", { children: jobList.map((job, i) => (_jsx("div", { children: job }, i))) }));
 }

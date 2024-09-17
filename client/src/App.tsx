@@ -1,11 +1,10 @@
-import { useState } from 'react'
 //import './App.css'
-import JobDisplay from './jobdisplay/containers/JobDisplay';
+import JobContainer from './jobdisplay/containers/JobContainer';
 
-function App(): JSX.Element {
+function App() {
   
   return (
-    <JobDisplay/>
+    <JobContainer/>
   )
 }
 

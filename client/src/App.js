@@ -1,7 +1,7 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 //import './App.css'
-import JobDisplay from './jobdisplay/containers/JobDisplay';
+import JobContainer from './jobdisplay/containers/JobContainer';
 function App() {
-    return (_jsx(JobDisplay, {}));
+    return (_jsx(JobContainer, {}));
 }
 export default App;
