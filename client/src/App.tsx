@@ -1,4 +1,5 @@
 //import './App.css'
+import React from 'react';
 import JobContainer from './jobdisplay/containers/JobContainer';
 
 function App() {
