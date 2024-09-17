@@ -15,8 +15,6 @@ export default function JobAccordion(props: props) {
     const [salary, setSalary] = useState<number>(0);
     const [status, setStatus] = useState<string>('');
     const [date, setDate] = useState<string>('');
-    const [industry, setIndustry] = useState<string>('');
-    const [subindustry, setSubIndustry] = useState<string>('');
     const { data } = props;
 
     useEffect(() => {
@@ -26,9 +24,7 @@ export default function JobAccordion(props: props) {
         setSalary(data.salary);
         setStatus(data.status);
         setDate(data.date);
-        setIndustry(data.industry);
-        setSubIndustry(data.subIndustry);
-    }, [company, title, description, salary, status, date, industry, subindustry])
+    }, [company, title, description, salary, status, date])
 
     return(
         <div>
@@ -65,13 +61,6 @@ export default function JobAccordion(props: props) {
                         <TextField id="filled-basic" label="Date" variant="filled" value={date} />
                     </span>
                     <br/>
-                    <span>
-                        <TextField id="filled-basic" label="Industry" variant="filled" value={industry} />
-                    </span>
-                    <br/>
-                    <span>
-                        <TextField id="filled-basic" label="SubIndustry" variant="filled" value={subindustry} />
-                    </span>
                 </AccordionDetails>
             </Accordion>
         </div>

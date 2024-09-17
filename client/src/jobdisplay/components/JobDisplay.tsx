@@ -9,8 +9,6 @@ export interface data {
     salary: number,
     status: string,
     date: string,
-    industry: string,
-    subIndustry: string,
 }
 
 export default function JobDisplay() {
@@ -23,8 +21,6 @@ export default function JobDisplay() {
             salary: 75000,
             status: "applied",
             date: "January 2",
-            industry: "retail",
-            subIndustry: "risk analyst"
         },
         {
             id: 2,
@@ -34,8 +30,6 @@ export default function JobDisplay() {
             salary: 72000,
             status: "interviewed",
             date: "January 3",
-            industry: "construction",
-            subIndustry: "architect"
         },
         {
             id: 3,
@@ -45,8 +39,6 @@ export default function JobDisplay() {
             salary: 70000,
             status: "offer",
             date: "January 5",
-            industry: "manufacturing",
-            subIndustry: "foreman"
         },
     ]
     useEffect(() => { //this useEffect will eventually go off when the user creates, deletes, or modifies
