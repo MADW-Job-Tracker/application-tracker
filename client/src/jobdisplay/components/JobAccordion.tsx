@@ -42,7 +42,7 @@ export default function JobAccordion(props: props) {
                 </AccordionSummary>
                 <AccordionDetails>
                     <span>
-                        <TextField id="filled-basic" label="Company" variant="filled" value={company} />
+                        <TextField id="filled-basic" label="Company" variant="filled" defaultValue={company} onChange={} />
                     </span>
                     <br/>
                     <span>
