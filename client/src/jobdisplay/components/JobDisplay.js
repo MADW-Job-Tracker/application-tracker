@@ -39,3 +39,4 @@ export default function JobDisplay() {
     }, []); //<- dependcy for when data changes
     return (_jsx("div", { children: jobList.map((job, i) => (_jsx("div", { children: job }, i))) }));
 }
+

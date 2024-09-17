@@ -5,7 +5,7 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
     "skipLibCheck": true,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "module": "ESNext",
@@ -14,7 +14,9 @@
     "isolatedModules": true,
     "noEmit": false,
     "jsx": "react-jsx",
-    "types": ["vitest/globals", "vite/client", "@types/jest"]
+    "types": ["vitest/globals", "vite/client", "@types/jest"],
+    "outDir": "./dist",  // or "./out" depending on what you prefer
+    "rootDir": "./src",  // the root directory of your TypeScript files
   },
   "references": [{ "path": "./tsconfig.node.json" }]
 }
