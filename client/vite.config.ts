@@ -18,4 +18,10 @@ export default defineConfig({
   preview: {
     port: 8080,
   },
+  build: {
+    outDir: 'dist',  // change to your desired output directory
+    rollupOptions: {
+      input: 'src/main.tsx',  // or whichever entry point you're using
+    },
+  },
 })
