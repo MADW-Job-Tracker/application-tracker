@@ -1,0 +1,25 @@
+{
+  "name": "src",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "server": "concurrently \"tsc --watch\" \"nodemon server.js\"",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.1",
+    "vitest": "^2.1.1"
+  },
+  "dependencies": {
+    "concurrently": "^9.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "nodemon": "^3.1.4"
+  }
+}
