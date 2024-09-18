@@ -1,7 +1,7 @@
 import { useState } from 'react'
 // import { Box, Button } from '@mui/material';
 import { TextField, Box, Button, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
-import Input from '@mui/joy/Input';
+// import Input from '@mui/joy/Input';
 
 // interface JobFormProps {
 //     initialData?: Job;
@@ -16,12 +16,13 @@ import Input from '@mui/joy/Input';
 //     status: string;
 // }
 
-export default function CreateJob(props: any) {
+export default function CreateJob() {
 
-    const [job, setJob] = useState(props.initialData || {
+    const [job, setJob] = useState({
         companyName: '',
         jobTitle: '',
         salary: '',
+        link: '',
         status: 'Applied'
     });
 
@@ -31,7 +32,9 @@ export default function CreateJob(props: any) {
     };
 
     const handleSubmit = () => {
-        props.onSave(job);
+        // props.onSave(job);
+        // I will just create the request to the backend here to write to the db
+        
     };
 
     // const [count, setCount] = useState(0)
@@ -71,6 +74,14 @@ export default function CreateJob(props: any) {
                 label="Salary"
                 name="salary"
                 value={job.salary}
+                onChange={handleChange}
+                sx={{ backgroundColor: 'white' }}
+                fullWidth
+            />
+            <TextField
+                label="Link"
+                name="link"
+                value={job.link}
                 onChange={handleChange}
                 sx={{ backgroundColor: 'white' }}
                 fullWidth
