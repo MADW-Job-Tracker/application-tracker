@@ -49,7 +49,6 @@ export default function JobDisplay() {
             subIndustry: "foreman"
         },
     ]
-<<<<<<< HEAD
     const updateHandler = (): void => {
         //update request here
         setUpdate(!update);
@@ -71,9 +70,6 @@ export default function JobDisplay() {
 
 
         }
-=======
-    useEffect(() => { //this useEffect will eventually go off when the user creates, deletes, or modifies
->>>>>>> dev
         const accordionHolder: JSX.Element[] = fakeData.map((element) => {
             return <JobAccordion data={element}/>;
         });
