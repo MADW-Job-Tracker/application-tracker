@@ -2,56 +2,19 @@ import { useState, useEffect } from 'react'
 import JobAccordion from './JobAccordion'
 
 export interface data {
-    id: number,
+    id: number | null,
     company: string,
-    jobTitle: string,
-    description: string,
-    salary: number,
+    jobTitle: string | null,
+    description: string | null,
+    salary: number | null,
     status: string,
-    date: string,
-    industry: string,
-    subIndustry: string,
+    date: string | null,
 }
 
 export default function JobDisplay() {
     const [jobList, setjobList] = useState<JSX.Element[]>([]); //stores job list in state
     const [update, setUpdate] = useState<boolean>(false); //flips between true/false in order to force a rerender
-    const fakeData: data[] = [{
-            id: 1,
-            company: "companyA",
-            jobTitle: "titleA",
-            description: "a job A",
-            salary: 75000,
-            status: "applied",
-            date: "January 2",
-            industry: "retail",
-            subIndustry: "risk analyst"
-        },
-        {
-            id: 2,
-            company: "companyB",
-            jobTitle: "titleB",
-            description: "a job B",
-            salary: 72000,
-            status: "interviewed",
-            date: "January 3",
-            industry: "construction",
-            subIndustry: "architect"
-        },
-        {
-            id: 3,
-            company: "companyC",
-            jobTitle: "titleC",
-            description: "a job C",
-            salary: 70000,
-            status: "offer",
-            date: "January 5",
-            industry: "manufacturing",
-            subIndustry: "foreman"
-        },
-    ]
     const updateHandler = (): void => {
-        //fetch request here
         setUpdate(!update);
         //console.log(update);
     }
@@ -59,9 +22,16 @@ export default function JobDisplay() {
     useEffect(() => { 
         const fetchData = async (): Promise<void> => {
             try{
-                const getUpdatedData = await fetch("http://localhost:8080/api/application/something", {
+                const getUpdatedData = await fetch("http://localhost:8080/application/all", {
                     method: "GET",
                 });
+                const processedData: data[] = await getUpdatedData.json();
+                console.log(processedData);
+
+                const accordionHolder: JSX.Element[] = processedData.map((element) => {
+                    return <JobAccordion data={element} updater={updateHandler}/>;
+                });
+                setjobList(accordionHolder);
             }
             catch (error) {
                 if(error instanceof Error){
@@ -69,12 +39,9 @@ export default function JobDisplay() {
                 }
             }
 
-
         }
-        const accordionHolder: JSX.Element[] = fakeData.map((element) => {
-            return <JobAccordion data={element} updater={updateHandler}/>;
-        });
-        setjobList(accordionHolder);
+        fetchData();
+
     }, [update]); //<- dependency for when data changes
 
 
