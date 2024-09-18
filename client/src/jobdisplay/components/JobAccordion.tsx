@@ -58,7 +58,7 @@ export default function JobAccordion(props: props) {
                     </span>
                     <br/>
                     <span>
-                        <TextField id="filled-basic" label="Status" variant="filled" value={status} />
+                        <TextField id="filled-basic" label="Salary" variant="filled" value={salary} type="number" onChange={(e) => setSalary(Number(e.target.value))}/>
                     </span>
                     <br/>
                     <span>

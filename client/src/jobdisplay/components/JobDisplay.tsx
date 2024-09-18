@@ -49,7 +49,27 @@ export default function JobDisplay() {
             subIndustry: "foreman"
         },
     ]
-    useEffect(() => { //this useEffect will eventually go off when the user creates, deletes, or modifies
+    const updateHandler = (): void => {
+        //update request here
+        setUpdate(!update);
+        //console.log(update);
+    }
+    //this useEffect will eventually go off when the user creates, deletes, or modifies
+    useEffect(() => { 
+        const fetchData = async (): Promise<void> => {
+            try{
+                const getUpdatedData = await fetch("http://localhost:8080/api/application/something", {
+                    method: "GET",
+                });
+            }
+            catch (error) {
+                if(error instanceof Error){
+                    console.error(error);
+                }
+            }
+
+
+        }
         const accordionHolder: JSX.Element[] = fakeData.map((element) => {
             return <JobAccordion data={element}/>;
         });
