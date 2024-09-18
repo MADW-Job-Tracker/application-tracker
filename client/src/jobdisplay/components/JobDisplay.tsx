@@ -13,6 +13,7 @@ export interface data {
 
 export default function JobDisplay() {
     const [jobList, setjobList] = useState<JSX.Element[]>([]); //stores job list in state
+    const [update, setUpdate] = useState<boolean>(false); //flips between true/false in order to force a rerender
     const fakeData: data[] = [{
             id: 1,
             company: "companyA",
@@ -41,16 +42,23 @@ export default function JobDisplay() {
             date: "January 5",
         },
     ]
-    useEffect(() => { //this useEffect will eventually go off when the user creates, deletes, or modifies
+    const updateHandler = (): void => {
+        //fetch request here
+        setUpdate(!update);
+        //console.log(update);
+    }
+    //this useEffect will eventually go off when the user creates, deletes, or modifies
+    useEffect(() => { 
         const accordionHolder: JSX.Element[] = fakeData.map((element) => {
-            return <JobAccordion data={element}/>;
+            return <JobAccordion data={element} updater={updateHandler}/>;
         });
         setjobList(accordionHolder);
-    }, []); //<- dependcy for when data changes
+    }, [update]); //<- dependency for when data changes
+
 
     
     return(
-        <div>
+        <div className="jobList">
             {jobList.map((job, i) => (
                 <div key={i}>
                     {job}

@@ -1,11 +1,12 @@
 import type { data } from "./JobDisplay";
 import { useState, useEffect } from 'react'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Accordion, AccordionSummary, AccordionDetails, TextField } from "@mui/material";
+import { Accordion, AccordionSummary, AccordionDetails, TextField, Button } from "@mui/material";
 
 
 interface props {
     data: data,
+    updater: Function,
 }
 
 export default function JobAccordion(props: props) {
@@ -15,17 +16,21 @@ export default function JobAccordion(props: props) {
     const [salary, setSalary] = useState<number>(0);
     const [status, setStatus] = useState<string>('');
     const [date, setDate] = useState<string>('');
-    const { data } = props;
+    const { data, updater } = props; //destructs from props
 
-    useEffect(() => {
+    //sets the initial state. runs only once
+    useEffect(() => { 
         setCompany(data.company);
         setTitle(data.jobTitle);
         setDescription(data.description);
         setSalary(data.salary);
         setStatus(data.status);
         setDate(data.date);
-    }, [company, title, description, salary, status, date])
-
+    }, []);
+    //handles when the user edits data
+    const changeHandler = ():void => {
+        updater();
+    }
     return(
         <div>
             <Accordion>
@@ -38,29 +43,30 @@ export default function JobAccordion(props: props) {
                 </AccordionSummary>
                 <AccordionDetails>
                     <span>
-                        <TextField id="filled-basic" label="Company" variant="filled" defaultValue={company} onChange={} />
+                        <TextField id="filled-basic" label="Company" variant="filled" value={company} onChange={(e) => setCompany(e.target.value)} />
                     </span>
                     <br/>
                     <span>
-                        <TextField id="filled-basic" label="Job Title" variant="filled" value={title} />
+                        <TextField id="filled-basic" label="Job Title" variant="filled" value={title} onChange={(e) => setTitle(e.target.value)}/>
                     </span>
                     <br/>
                     <span>
-                        <TextField id="filled-basic" label="Description" variant="filled" value={description} />
+                        <TextField id="filled-basic" label="Description" variant="filled" value={description} onChange={(e) => setDescription(e.target.value)}/>
                     </span>
                     <br/>
                     <span>
-                        <TextField id="filled-basic" label="Salary" variant="filled" value={salary} />
+                        <TextField id="filled-basic" label="Salary" variant="filled" value={salary} onChange={(e) => setSalary(Number(e.target.value))}/>
                     </span>
                     <br/>
                     <span>
-                        <TextField id="filled-basic" label="Status" variant="filled" value={status} />
+                        <TextField id="filled-basic" label="Status" variant="filled" value={status} onChange={(e) => setStatus(e.target.value)}/>
                     </span>
                     <br/>
                     <span>
-                        <TextField id="filled-basic" label="Date" variant="filled" value={date} />
+                        <TextField id="filled-basic" label="Date" variant="filled" value={date} onChange={(e) => setDate(e.target.value)}/>
                     </span>
                     <br/>
+                    <Button variant="contained" onClick={() => changeHandler()}>Submit Changes</Button>
                 </AccordionDetails>
             </Accordion>
         </div>
