@@ -71,7 +71,7 @@ export default function CreateJob() {
         } = job
 
         try {
-            e.preventDefault();
+            // e.preventDefault();
             const salary = Number(job.salary)
             stopIfErrors(job);
 
@@ -108,6 +108,8 @@ export default function CreateJob() {
                 });
                 // const errorData = await result.json();
                 // throw new Error(errorData.message || 'Failed to create application');
+                window.location.reload();
+
             }
             else {
                 setErrors((prevErrors) => ({
@@ -167,7 +169,7 @@ export default function CreateJob() {
                 />
                 <TextField
                     variant="filled"
-                    label="Link"
+                    label="Description"
                     name="link"
                     value={job.link}
                     onChange={handleChange}

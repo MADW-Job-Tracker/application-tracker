@@ -80,9 +80,6 @@ export default function JobAccordion(props: props) {
     }
 
 
-
-
-
     return(
         <div>
             <Accordion>
@@ -91,9 +88,17 @@ export default function JobAccordion(props: props) {
                 aria-controls="panel1-content"
                 id="panel1-header"
                 >
-                { company }
+                    <div style={{ display: 'flex', justifyContent: 'space-between', width: '90%'  }}>
+                        <div><b>Company:</b> {company}</div>
+                        <div><b>Job Title:</b> {title}</div>
+                        <div><b>Description:</b> {description}</div>
+                        <div><b>Salary:</b> {salary}</div>
+                        <div><b>Status:</b> {status}</div>
+                    </div>
+
                 </AccordionSummary>
-                <AccordionDetails>
+                <AccordionDetails
+                sx={{ display: 'flex', flexDirection: 'row'}}>
                     <span>
                         <TextField id="filled-basic" label="Company" variant="filled" value={company} onChange={(e) => setCompany(e.target.value)} />
                     </span>

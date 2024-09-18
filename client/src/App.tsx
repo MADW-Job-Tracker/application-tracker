@@ -12,7 +12,7 @@ function App() {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        minHeight="50vh"
+        // minHeight="50vh"
       >
         <JobContainer />
       </Box>
