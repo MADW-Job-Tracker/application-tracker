@@ -34,9 +34,10 @@ const applicationController = {
   // Update an application
   updateApplication: async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { status, company, title, description } = req.body
-        const sql = `UPDATE jobs SET status = $1 WHERE company = $2 AND title = $3 AND description = $4`
-        const values:string[] = [status, company, title, description]
+        const { id, status, company, title, description, salary } = req.body
+        console.log(req.body);
+        const sql = `UPDATE jobs SET status = $1,company = $2, title = $3, description = $4, salary = $5 WHERE id = $6`
+        const values:string[] = [status, company, title, description, salary, id]
         const response = await db.query(sql, values)
         res.locals.update = response;
         return next()
@@ -49,6 +50,7 @@ const applicationController = {
   deleteApplication: async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { company, title, description } = req.body
+        // //console.log(req.body);
         const sql = `DELETE FROM jobs WHERE company = $1 AND title = $2 AND description = $3`
         const values:string[] = [company, title, description];
         const result = await db.query(sql, values);
