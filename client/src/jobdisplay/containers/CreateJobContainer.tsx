@@ -8,7 +8,7 @@ export default function CreateJobContainer() {
             flexDirection="column"
             // justifyContent="center"
             alignItems="center"
-            marginTop={5}
+            margin={5}
         >
             <Toolbar>
                 <Typography
