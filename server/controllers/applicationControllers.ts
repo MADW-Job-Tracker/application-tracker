@@ -4,9 +4,9 @@ import db from '../models/jobTrackerModel.js';
 // Define the controller object
 const applicationController = {
   // Create an application
-  createApplication: async (_req: Request, res: Response, next: NextFunction) => {
+  createApplication: async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { company, title, description, salary, status } = _req.body
+        const { company, title, description, salary, status } = req.body
         const sql = `INSERT INTO jobs (company, title, description, salary, status)
                     VALUES ($1, $2, $3, $4, $5)`;
         const values:string[] = [company, title, description, salary, status];
@@ -36,7 +36,7 @@ const applicationController = {
     try {
         const { status, company, title, description } = req.body
         const sql = `UPDATE jobs SET status = $1 WHERE company = $2 AND title = $3 AND description = $4`
-        const values = [status, company, title, description]
+        const values:string[] = [status, company, title, description]
         const response = await db.query(sql, values)
         res.locals.update = response;
         return next()
@@ -50,7 +50,7 @@ const applicationController = {
     try {
         const { company, title, description } = req.body
         const sql = `DELETE FROM jobs WHERE company = $1 AND title = $2 AND description = $3`
-        const values = [company, title, description];
+        const values:string[] = [company, title, description];
         const result = await db.query(sql, values);
         res.locals.deleted = result;
         return next()
