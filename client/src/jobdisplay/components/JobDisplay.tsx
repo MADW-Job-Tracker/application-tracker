@@ -4,7 +4,7 @@ import JobAccordion from './JobAccordion'
 export interface data {
     id: number | null,
     company: string,
-    jobTitle: string | null,
+    title: string | null,
     description: string | null,
     salary: number | null,
     status: string,
@@ -45,14 +45,17 @@ export default function JobDisplay() {
     }, [update]); //<- dependency for when data changes
 
 
+
     
-    return(
-        <div className="jobList">
-            {jobList.map((job, i) => (
-                <div key={i}>
-                    {job}
-                </div>
-            ))}
-        </div>
-    )
+    return (
+        <>
+            <div className="jobList">
+                 {jobList.slice().reverse().map((job, i) => (
+                    <div key={i}>
+                        {job}
+                    </div>
+                ))}
+            </div>
+        </>
+    );
 }

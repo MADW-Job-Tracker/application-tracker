@@ -3,7 +3,9 @@ import db from '../models/jobTrackerModel.js';
 const applicationController = {
     // Create an application
     createApplication: async (req, res, next) => {
+    createApplication: async (req, res, next) => {
         try {
+            const { company, title, description, salary, status } = req.body;
             const { company, title, description, salary, status } = req.body;
             const sql = `INSERT INTO jobs (company, title, description, salary, status)
                     VALUES ($1, $2, $3, $4, $5)`;
@@ -31,9 +33,10 @@ const applicationController = {
     },
     // Update an application
     updateApplication: async (req, res, next) => {
+    updateApplication: async (req, res, next) => {
         try {
-            const { status, company, title, description } = req.body;
-            const sql = `UPDATE jobs SET status = $1 WHERE company = $2 AND title = $3 AND description = $4`;
+            const { id, status, company, title, description, salary } = req.body;
+            const sql = `UPDATE jobs SET status = $1, company = $2, title = $3, salary = $4, description = $5 WHERE id = $6`;
             const values = [status, company, title, description];
             const response = await db.query(sql, values);
             res.locals.update = response;
