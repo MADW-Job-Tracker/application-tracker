@@ -8,6 +8,7 @@ app.use(express.json());
 app.use(cors());
 
 
+
 // Standard 404 Route Handler
 app.use('/', (_req, res) => {
 	res.status(404).send('Error page not found!');
