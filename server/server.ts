@@ -13,6 +13,7 @@ app.use(cors());
 app.use('/application', applicationRouter)
 
 
+
 // Standard 404 Route Handler
 app.use('/', (_req: Request, res: Response) => {
 	res.status(404).send('Error page not found!');

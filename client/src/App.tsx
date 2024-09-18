@@ -1,12 +1,23 @@
-import { useState } from 'react'
 //import './App.css'
-import JobDisplay from './jobdisplay/containers/JobDisplay';
+// import React from 'react';
+import JobContainer from './jobdisplay/containers/JobContainer';
+import CreateJobContainer from './jobdisplay/containers/CreateJobContainer';
+import Box from '@mui/material/Box';
 
 function App() {
-  const [count, setCount] = useState(0)
-  
   return (
-    <JobDisplay></JobDisplay>
+    <>
+      <CreateJobContainer />
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="50vh"
+      >
+        <JobContainer />
+      </Box>
+    </>
+
   )
 }
 
