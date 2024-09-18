@@ -11,11 +11,11 @@ interface props {
 
 export default function JobAccordion(props: props) {
     const [company, setCompany] = useState<string>('');
-    const [title, setTitle] = useState<string>('');
-    const [description, setDescription] = useState<string>('');
-    const [salary, setSalary] = useState<number>(0);
+    const [title, setTitle] = useState<string | null>('');
+    const [description, setDescription] = useState<string | null>('');
+    const [salary, setSalary] = useState<number | null>(0);
     const [status, setStatus] = useState<string>('');
-    const [date, setDate] = useState<string>('');
+    const [date, setDate] = useState<string | null>('');
     const { data, updater } = props; //destructs from props
 
     //sets the initial state. runs only once
