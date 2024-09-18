@@ -1,9 +1,10 @@
 {
-  "name": "src",
+  "name": "frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "fullstack": "concurrently \"npm run dev\" \"cd ../server && npm run server\"",
     "dev": "concurrently \"npm:watch\" \"vite\" ",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
