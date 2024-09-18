@@ -2,9 +2,9 @@ import db from '../models/jobTrackerModel.js';
 // Define the controller object
 const applicationController = {
     // Create an application
-    createApplication: async (_req, res, next) => {
+    createApplication: async (req, res, next) => {
         try {
-            const { company, title, description, salary, status } = _req.body;
+            const { company, title, description, salary, status } = req.body;
             const sql = `INSERT INTO jobs (company, title, description, salary, status)
                     VALUES ($1, $2, $3, $4, $5)`;
             const values = [company, title, description, salary, status];
@@ -30,10 +30,18 @@ const applicationController = {
         }
     },
     // Update an application
-    updateApplication: async (_req, _res, _next) => {
+    updateApplication: async (req, res, next) => {
         try {
+            const { status, company, title, description } = req.body;
+            const sql = `UPDATE jobs SET status = $1 WHERE company = $2 AND title = $3 AND description = $4`;
+            const values = [status, company, title, description];
+            const response = await db.query(sql, values);
+            res.locals.update = response;
+            return next();
         }
-        catch (err) { }
+        catch (err) {
+            return next(err);
+        }
     },
     // Delete an application
     deleteApplication: async (req, res, next) => {

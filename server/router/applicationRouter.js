@@ -9,9 +9,9 @@ router.get('/all', applicationController.getApplication, (_req, res) => {
     return res.status(200).json(res.locals.all);
 });
 router.put('/update', applicationController.updateApplication, (_req, res) => {
-    return res.status(200).json(res.locals);
+    return res.status(200).json(res.locals.update);
 });
 router.delete('/delete', applicationController.deleteApplication, (_req, res) => {
-    return res.status(200).json(res.locals);
+    return res.status(200).json(res.locals.deleted);
 });
 export default router;
