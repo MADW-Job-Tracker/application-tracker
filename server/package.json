@@ -1,9 +1,10 @@
 {
-  "name": "src",
+  "name": "backend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "fullstack": "concurrently \"npm run server\" \"cd ../client && npm run dev\"",
     "server": "concurrently \"tsc --watch\" \"nodemon server.js\"",
     "build": "tsc && vite build",
     "preview": "vite preview",
