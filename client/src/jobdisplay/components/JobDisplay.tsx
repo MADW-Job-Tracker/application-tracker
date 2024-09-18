@@ -9,7 +9,6 @@ export interface data {
     salary: number | null,
     status: string,
     date: string | null,
-    date: string | null,
 }
 
 export default function JobDisplay() {
@@ -24,16 +23,8 @@ export default function JobDisplay() {
         const fetchData = async (): Promise<void> => {
             try{
                 const getUpdatedData = await fetch("http://localhost:8080/application/all", {
-                const getUpdatedData = await fetch("http://localhost:8080/application/all", {
                     method: "GET",
                 });
-                const processedData: data[] = await getUpdatedData.json();
-                console.log(processedData);
-
-                const accordionHolder: JSX.Element[] = processedData.map((element) => {
-                    return <JobAccordion data={element} updater={updateHandler}/>;
-                });
-                setjobList(accordionHolder);
                 const processedData: data[] = await getUpdatedData.json();
                 console.log(processedData);
 
@@ -49,8 +40,6 @@ export default function JobDisplay() {
             }
 
         }
-        fetchData();
-
         fetchData();
 
     }, [update]); //<- dependency for when data changes
