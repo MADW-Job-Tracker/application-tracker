@@ -35,9 +35,8 @@ const applicationController = {
   updateApplication: async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { status, company, title, description } = req.body
-        const newStatus = !status
         const sql = `UPDATE jobs SET status = $1 WHERE company = $2 AND title = $3 AND description = $4`
-        const values = [newStatus, company, title, description]
+        const values = [status, company, title, description]
         const response = await db.query(sql, values)
         res.locals.update = response;
         return next()
