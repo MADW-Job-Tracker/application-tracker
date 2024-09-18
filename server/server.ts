@@ -4,12 +4,18 @@ import cors from 'cors';
 const app = express();
 const PORT = 8080;
 
+import applicationRouter from './router/applicationRouter.js'
+
+
 app.use(express.json());
 app.use(cors());
 
+app.use('/application', applicationRouter)
+
+
 
 // Standard 404 Route Handler
-app.use('/', (_req, res) => {
+app.use('/', (_req: Request, res: Response) => {
 	res.status(404).send('Error page not found!');
 });
 
