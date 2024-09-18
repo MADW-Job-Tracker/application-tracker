@@ -1,12 +1,11 @@
 import express from 'express';
-import kubernetesRouter from './routes/kubernetesRouter.js';
 import cors from 'cors';
 const app = express();
 const PORT = 8080;
+import applicationRouter from './router/applicationRouter.js';
 app.use(express.json());
 app.use(cors());
-// Kubernetes API Router Handler
-app.use('/api', kubernetesRouter);
+app.use('/application', applicationRouter);
 // Standard 404 Route Handler
 app.use('/', (_req, res) => {
     res.status(404).send('Error page not found!');
