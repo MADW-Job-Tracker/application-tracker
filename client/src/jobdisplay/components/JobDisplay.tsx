@@ -9,11 +9,12 @@ export interface data {
     salary: number,
     status: string,
     date: string,
+    industry: string,
+    subIndustry: string,
 }
 
 export default function JobDisplay() {
     const [jobList, setjobList] = useState<JSX.Element[]>([]); //stores job list in state
-    const [update, setUpdate] = useState<boolean>(false); //flips between true/false in order to force a rerender
     const fakeData: data[] = [{
             id: 1,
             company: "companyA",
@@ -22,6 +23,8 @@ export default function JobDisplay() {
             salary: 75000,
             status: "applied",
             date: "January 2",
+            industry: "retail",
+            subIndustry: "risk analyst"
         },
         {
             id: 2,
@@ -31,6 +34,8 @@ export default function JobDisplay() {
             salary: 72000,
             status: "interviewed",
             date: "January 3",
+            industry: "construction",
+            subIndustry: "architect"
         },
         {
             id: 3,
@@ -40,8 +45,11 @@ export default function JobDisplay() {
             salary: 70000,
             status: "offer",
             date: "January 5",
+            industry: "manufacturing",
+            subIndustry: "foreman"
         },
     ]
+<<<<<<< HEAD
     const updateHandler = (): void => {
         //update request here
         setUpdate(!update);
@@ -63,16 +71,18 @@ export default function JobDisplay() {
 
 
         }
+=======
+    useEffect(() => { //this useEffect will eventually go off when the user creates, deletes, or modifies
+>>>>>>> dev
         const accordionHolder: JSX.Element[] = fakeData.map((element) => {
-            return <JobAccordion data={element} updater={updateHandler}/>;
+            return <JobAccordion data={element}/>;
         });
         setjobList(accordionHolder);
-    }, [update]); //<- dependency for when data changes
-
+    }, []); //<- dependcy for when data changes
 
     
     return(
-        <div className="jobList">
+        <div>
             {jobList.map((job, i) => (
                 <div key={i}>
                     {job}
